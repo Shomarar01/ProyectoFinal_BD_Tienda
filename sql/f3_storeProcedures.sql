@@ -1,6 +1,6 @@
 -- Procedimientos almacenados
 
--- Cambiamos el delimitador temporalmente a dos diagonales para que mysql entienda que todo el procedimiento es un solo bloque de codigo y no se detenga cuando encuentre los puntos y comas internos de los inserts o updates.
+-- Cambiamos el delimitador a dos diagonales para que mysql entienda que todo el procedimiento es un solo bloque de codigo y no se detenga cuando encuentre los puntos y comas internos
 DELIMITER //
 
 -- 1. Registrar un nuevo pedido, verificando el límite de 5 pedidos pendientes y stock suficiente.

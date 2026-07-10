@@ -5,7 +5,7 @@ USE tienda_electronica;
 -- Categorias
 CREATE TABLE categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL UNIQUE, -- Restricción: Nombre único (Clave candidata)
+    nombre VARCHAR(100) NOT NULL UNIQUE, -- Restricción: Nombre único
     descripcion TEXT
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE categorias (
 CREATE TABLE clientes (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
-    correo VARCHAR(150) NOT NULL UNIQUE, -- Restricción: Unicidad de correos (Clave candidata)
+    correo VARCHAR(150) NOT NULL UNIQUE, -- Restricción: Unicidad de correos 
     telefono VARCHAR(20),
     direccion VARCHAR(255)
 );

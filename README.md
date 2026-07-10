@@ -14,16 +14,15 @@ El proyecto está dividido en 5 entregables principales:
 
 ## Tecnologías usadas
 
-* **Base de Datos:** MySQL / MariaDB (Archivos `.sql`).
-* **Lenguaje de Programación:** Java (Uso de JDBC para la conexión).
-* **Documentación:** LaTeX (Compilado mediante VS Code y pdflatex).
-* **Modelado:** MySQL Model para diagrama Entidad-Relación.
+* **Base de Datos:** MySQL / MariaDB (Archivos `.sql`)
+* **Documentación:** LaTeX (Compilado mediante VS Code y pdflatex)
+* **Modelado:** MySQL Model para diagrama Entidad-Relación
 
 ## Estructura del Repositorio
-* `/docs`: Contiene los archivos fuente en LaTeX y los diagramas exportados.
+* `/documentación`: Contendrá los archivos fuente en LaTeX y los diagramas exportados.
 * `/sql`: Contiene los scripts numerados por fases (`f1_...` , `f2_...`, `f3_...`, `f4_...`) listos para ser ejecutados en MySQL Workbench.
 
-## 🚀 Guía de Ejecución
+## Guía de Ejecución
 
 Para probar el proyecto localmente, abre MySQL Workbench y ejecuta los scripts ubicados en la carpeta `/sql` en el siguiente orden :
 1. Ejecutar `f2_implementacion_tablas.sql` para crear la base de datos y sus restricciones.
