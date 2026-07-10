@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.1)  10 JUL 2026 01:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.1)  10 JUL 2026 12:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -186,16 +186,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  (f4_validacion.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 5.
 )
 \tf@toc=\write3
 \openout3 = `f4_validacion.toc'.
 
- (f4_validacion.lol
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 1.
-)
+ (f4_validacion.lol)
 \tf@lol=\write4
 \openout4 = `f4_validacion.lol'.
 
@@ -228,12 +227,37 @@ Overfull \hbox (36.99692pt too wide) in paragraph at lines 95--95
  []\OT1/cmtt/m/n/10 | Jhovanny P^^Serez  | jhovanny@email.com |                         1 |[] 
  []
 
-[2]
+
 Overfull \hbox (36.99692pt too wide) in paragraph at lines 95--95
  []\OT1/cmtt/m/n/10 +-----------------+--------------------+---------------------------+[] 
  []
 
-[3] (f4_validacion.aux
+[2]
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 137--137
+[]\OT1/cmtt/m/n/10 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 137--137
+[]\OT1/cmtt/m/n/10 | id | select_type | table     | type | possible_keys       | key                 | key_len | ref   | rows | filtered |[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 137--137
+[]\OT1/cmtt/m/n/10 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 137--137
+[]\OT1/cmtt/m/n/10 |  1 | SIMPLE      | productos | ref  | idx_producto_nombre | idx_producto_nombre | 452     | const |    1 |   100.00 |[] 
+ []
+
+[3]
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 137--137
+[]\OT1/cmtt/m/n/10 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+[] 
+ []
+
+[4] [5] (f4_validacion.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -243,17 +267,17 @@ L3 programming layer <2026-04-28>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5240 strings out of 467683
- 81069 string characters out of 5414722
- 792515 words of memory out of 5000000
- 34288 multiletter control sequences out of 15000+600000
- 632005 words of font info for 55 fonts, out of 8000000 for 9000
+ 5252 strings out of 467683
+ 81278 string characters out of 5414722
+ 792487 words of memory out of 5000000
+ 34299 multiletter control sequences out of 15000+600000
+ 632658 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,408b,1505s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on f4_validacion.pdf (3 pages, 116891 bytes).
+ 57i,6n,65p,541b,1505s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on f4_validacion.pdf (5 pages, 150534 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
+ 63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

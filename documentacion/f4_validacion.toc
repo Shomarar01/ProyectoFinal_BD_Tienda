@@ -1,2 +1,8 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {section}{\numberline {1}Resultados de Consultas Ejecutadas con Datos de Prueba}{2}{}%
+\contentsline {section}{\numberline {1}Resultados de consultas con datos de prueba}{2}{}%
+\contentsline {section}{\numberline {2}Explicaci\'on de \'indices creados y su impacto}{3}{}%
+\contentsline {section}{\numberline {3}Pruebas de procedimientos almacenados (escenarios de error)}{4}{}%
+\contentsline {subsection}{\numberline {3.1}Intento de rese\~na sin compra previa}{4}{}%
+\contentsline {subsection}{\numberline {3.2}Intento de compra sin stock suficiente}{4}{}%
+\contentsline {subsection}{\numberline {3.3}Intento de agregar producto duplicado}{4}{}%
+\contentsline {section}{\numberline {4}Propuestas de mejoras adicionales}{5}{}%

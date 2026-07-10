@@ -48,7 +48,7 @@
 \lstlistoflistings
 
 \newpage
-\section{Resultados de Consultas Ejecutadas con Datos de Prueba}
+\section{Resultados de consultas con datos de prueba}
 Al realizar las tres consultas del entregable anterior usando los datos de prueba que añad\'i, pudimos ver que el sistema responde de forma correcta y nos devuelve las tablas que esperamos; esto nos sirve para asegurar que la estructura soporta las operaciones de la tienda.
 
 \begin{enumerate}
@@ -115,4 +115,60 @@ LIMIT 5;
 +-------------+-----------------------+
     \end{verbatim}
 \end{enumerate}
+
+
+\section{Explicaci\'on de \'indices creados y su impacto}
+Como vimos en las diapositivas de clase, para mejorar el rendimiento de la base de datos agregamos \'indices en las columnas que m\'as vamos a usar para buscar datos, como un \'indice funciona como el \'indice de un libro, permite que MySQL vaya directo a la fila en lugar de leer toda la tabla.
+
+\begin{itemize}
+    \item \textbf{idx\_producto\_nombre:} Creado sobre el nombre de los productos, ayuda a que el buscador de la tienda sea m\'as r\'apido.
+    \item \textbf{idx\_producto\_categoria:} Creado sobre la llave for\'anea de categor\'ias para filtrar r\'apido.
+    \item \textbf{idx\_pedido\_cliente:} Creado en los pedidos para cargar el historial del cliente sin demoras.
+\end{itemize}
+
+Para comprobar que s\'i funcionan, utilizamos el comando \texttt{EXPLAIN} antes de hacer un SELECT, pues este comando le pregunta a MySQL c\'omo planea buscar el dato.
+
+\begin{verbatim}
++----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
+| id | select_type | table     | type | possible_keys       | key                 | key_len | ref   | rows | filtered |
++----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
+|  1 | SIMPLE      | productos | ref  | idx_producto_nombre | idx_producto_nombre | 452     | const |    1 |   100.00 |
++----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
+\end{verbatim}
+
+Al ver la columna llamada \texttt{key}, podemos ver que MySQL s\'i utiliz\'o nuestro \'indice; y en la columna \texttt{rows}, dice que solo tuvo que leer 1 fila para encontrar el resultado, demostrando que la consulta est\'a optimizada.
+
+\section{Pruebas de procedimientos almacenados (escenarios de error)}
+Para asegurar que se cumplan las restricciones del profesor, ejecutamos los procedimientos almacenados usando el comando \texttt{CALL}, intentando meter datos falsos para ver si el sistema nos deten\'ia.
+
+\subsection{Intento de rese\~na sin compra previa}
+Intentamos que el cliente 2 hiciera una rese\~na del producto 1, el cual nunca ha comprado.
+\begin{lstlisting}[language=SQL, frame=single, caption={Error por falta de compra}]
+CALL sp_registrar_resena(5, 'Excelente celular', 1, 2);
+\end{lstlisting}
+El procedimiento detect\'o que no hab\'ia registros de compra y bloque\'o la inserci\'on, arrojando el mensaje: \textit{Error: Solo puedes hacer rese\~nas de productos que hayas comprado.}
+
+\subsection{Intento de compra sin stock suficiente}
+Intentamos registrar un pedido por 1000 unidades de un producto que solo tiene 20 en stock.
+\begin{lstlisting}[language=SQL, frame=single, caption={Error por falta de stock}]
+CALL sp_registrar_pedido(1, 1, 1000, 15000.00);
+\end{lstlisting}
+El procedimiento us\'o un IF para revisar el stock y, al ver que no alcanzaba, abort\'o la venta arrojando: \textit{Error: No hay suficiente stock para este producto.}
+
+\subsection{Intento de agregar producto duplicado}
+Intentamos registrar un iPhone 13 cuando ya existe otro igual en la misma categor\'ia.
+\begin{lstlisting}[language=SQL, frame=single, caption={Error por producto duplicado}]
+CALL sp_agregar_producto('iPhone 13', '...', 15000, 10, 1);
+\end{lstlisting}
+El sistema cont\'o los nombres repetidos y lanz\'o la alerta: \textit{Error: Ya existe un producto con ese nombre en esta categor\'ia.}
+
+\section{Propuestas de mejoras adicionales}
+Al ir haciendo este proyecto me di cuenta de un par de cosas que podr\'iamos implementar a futuro bas\'andonos en los temas que vimos en clase:
+
+\begin{itemize}
+    \item \textbf{Uso de vistas (VIEWS):} Durante la Fase 3 me di cuenta de que hacer consultas con \texttt{JOIN} puede ser un poco complejo, como mejora, propongo guardar las consultas m\'as dif\'iciles (como el reporte de clientes con pedidos pendientes) dentro de una VIEW, as\'i, cualquier usuario podr\'ia ver la informaci\'on r\'apidamente sin tener que escribir todo el c\'odigo SQL cada vez.
+    \item \textbf{Uso de triggers (Disparadores):} Para tener a\'un m\'as seguridad, propongo agregar un Trigger antes de insertar rese\~nas, aunque el procedimiento ya revisa que el cliente haya comprado el art\'iculo, un Trigger nos ayudar\'ia a asegurar que nadie meta un n\'umero negativo o un 10 en la calificaci\'on de estrellas, garantizando que siempre sea del 1 al 5.
+\end{itemize}
+
+
 \end{document}

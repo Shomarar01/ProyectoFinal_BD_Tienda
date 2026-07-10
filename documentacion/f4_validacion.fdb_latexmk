@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1783669576.89577 "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f4_validacion.tex" "f4_validacion.pdf" "f4_validacion" 1783669578.54436 0
+["pdflatex"] 1783707897.93674 "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f4_validacion.tex" "f4_validacion.pdf" "f4_validacion" 1783707899.76902 0
   "C:/Users/shomi/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1780327994 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/shomi/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1780327551 13353041 e71102a03c0a1450469db97213443b6b ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -14,6 +14,7 @@
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
+  "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti10.tfm" 1136765053 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt10.tfm" 1136765053 768 1321e9409b4137d6fb428ac9dc956269 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt8.tfm" 1136765053 768 d7b9a2629a0c353102ad947dc9221d49 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
@@ -22,6 +23,7 @@
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247596667 31809 8670ca339bf94e56da1fc21c80635e2a ""
+  "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1247596667 31099 342ef5a582aacbd3346f3cf4579679fa ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb" 1247596666 24287 6b803fa9eb1ddff9112e00519b09dd9e ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -51,11 +53,11 @@
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstmisc.sty" 1763898348 77105 002e983b638eadbf04e580642335f689 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstpatch.sty" 1763898348 353 9024412f43e92cd5b21fe9ded82d0610 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f4_validacion.tex" 1783669575 4767 a8217fe504c00f217d76b415f7aa5951 ""
-  "f4_validacion.aux" 1783669578 748 0e811005e3a3e03c212ab1f244ce9a2c "pdflatex"
-  "f4_validacion.lol" 1783669578 251 49738e2840b1d2ecbe9b8bb5c42dd0a7 "pdflatex"
-  "f4_validacion.tex" 1783669575 4767 a8217fe504c00f217d76b415f7aa5951 ""
-  "f4_validacion.toc" 1783669578 131 e9ec7e2f899182eef57fec912a3d7cf9 "pdflatex"
+  "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f4_validacion.tex" 1783707896 9272 423f2b2ea286e53c274cf7b7705e29b1 ""
+  "f4_validacion.aux" 1783707899 1881 da4186b20c57a168d687f1b450f837b8 "pdflatex"
+  "f4_validacion.lol" 1783707899 478 81442150e1b092e117b2ef74fd5965f9 "pdflatex"
+  "f4_validacion.tex" 1783707896 9272 423f2b2ea286e53c274cf7b7705e29b1 ""
+  "f4_validacion.toc" 1783707899 668 d8c0824bf4871fedb282dd86f7ed4e40 "pdflatex"
   (generated)
   "f4_validacion.aux"
   "f4_validacion.log"
