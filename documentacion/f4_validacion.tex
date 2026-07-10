@@ -1,0 +1,118 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+
+% Preambulo
+
+\title{Entregable fase 4: Informe de validaci\'on y optimizaci\'on de tienda online}
+\author{Shomara Rivera}
+\date{\today}
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=t,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    extendedchars=true,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{\textquestiondown}}1 {¡}{{\textexclamdown}}1
+}
+\lstset{style=mystyle}
+
+ \renewcommand{\lstlistingname}{C\'odigo}
+ \renewcommand{\lstlistlistingname}{Lista de c\'odigos}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\lstlistoflistings
+
+\newpage
+\section{Resultados de Consultas Ejecutadas con Datos de Prueba}
+Al realizar las tres consultas del entregable anterior usando los datos de prueba que añad\'i, pudimos ver que el sistema responde de forma correcta y nos devuelve las tablas que esperamos; esto nos sirve para asegurar que la estructura soporta las operaciones de la tienda.
+
+\begin{enumerate}
+    \item Listar productos disponibles por categor\'ia, ordenados por precio:
+    Esta consulta combina los productos con sus respectivas categor\'ias usando un \texttt{JOIN}, mostrando de menor a mayor los art\'iculos que s\'i tienen inventario.
+
+    \begin{lstlisting}[language=SQL, frame=single, caption={Consulta de productos disponibles}]
+SELECT p.nombre AS producto, c.nombre AS categoria, p.precio, p.stock
+FROM productos p
+JOIN categorias c ON p.id_categoria = c.id_categoria
+WHERE p.stock > 0
+ORDER BY p.precio ASC;
+    \end{lstlisting}
+
+    \begin{verbatim}
++---------------+------------+----------+-------+
+| producto      | categoria  | precio   | stock |
++---------------+------------+----------+-------+
+| Cable USB-C   | Accesorios |   200.00 |   100 |
+| Poco X3       | Teléfonos  |  5000.00 |    40 |
+| iPhone 13     | Teléfonos  | 15000.00 |    20 |
+| MacBook Air   | Laptops    | 20000.00 |    10 |
++---------------+------------+----------+-------+
+    \end{verbatim}
+
+    \item Mostrar clientes con pedidos pendientes y total de compras:
+    Aqu\'i agrupamos los pedidos con estado pendiente para identificar qu\'e usuarios tienen compras en proceso, el conteo se hace de forma individual gracias al \texttt{GROUP BY}.
+
+    \begin{lstlisting}[language=SQL, frame=single, caption={Consulta de pedidos pendientes}]
+SELECT c.nombre AS cliente, c.correo, COUNT(pe.id_pedido) AS total_pedidos_pendientes
+FROM clientes c
+JOIN pedidos pe ON c.id_cliente = pe.id_cliente
+WHERE pe.estado = 'pendiente'
+GROUP BY c.id_cliente;
+    \end{lstlisting}
+
+    \begin{verbatim}
++-----------------+--------------------+---------------------------+
+| cliente         | correo             | total_pedidos_pendientes  |
++-----------------+--------------------+---------------------------+
+| Pablo Hernandez | pablo@email.com    |                         1 |
+| Jhovanny Pérez  | jhovanny@email.com |                         1 |
++-----------------+--------------------+---------------------------+
+    \end{verbatim}
+
+    \item Reporte de los 5 productos con mejor calificaci\'on promedio en rese\~nas:
+    Esta consulta calcula el promedio de estrellas usando la funci\'on \texttt{AVG}; el filtro \texttt{LIMIT 5} recorta la tabla para mostrarnos solo el top de los mejores.
+
+    \begin{lstlisting}[language=SQL, frame=single, caption={Consulta de promedio de calificaciones}]
+SELECT p.nombre AS producto, AVG(r.calificacion) AS promedio_calificacion
+FROM productos p
+JOIN resenas r ON p.id_producto = r.id_producto
+GROUP BY p.id_producto
+ORDER BY promedio_calificacion DESC
+LIMIT 5;
+    \end{lstlisting}
+
+    \begin{verbatim}
++-------------+-----------------------+
+| producto    | promedio_calificacion |
++-------------+-----------------------+
+| iPhone 13   |              5.000000 |
+| Dell XPS 13 |              5.000000 |
++-------------+-----------------------+
+    \end{verbatim}
+\end{enumerate}
+\end{document}
