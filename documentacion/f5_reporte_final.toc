@@ -3,3 +3,7 @@
 \contentsline {section}{\numberline {2}Análisis y diseño}{2}{}%
 \contentsline {subsection}{\numberline {2.1}Diagrama entidad-relación (ER)}{2}{}%
 \contentsline {subsection}{\numberline {2.2}Justificación de la normalización}{2}{}%
+\contentsline {section}{\numberline {3}Implementación de la base de datos}{3}{}%
+\contentsline {section}{\numberline {4}Consultas y procedimientos almacenados}{7}{}%
+\contentsline {subsection}{\numberline {4.1}Consultas SQL}{7}{}%
+\contentsline {subsection}{\numberline {4.2}Procedimientos Almacenados (Store Procedures)}{8}{}%

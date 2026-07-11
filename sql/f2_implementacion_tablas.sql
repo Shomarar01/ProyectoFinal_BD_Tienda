@@ -5,7 +5,7 @@ USE tienda_electronica;
 -- Categorias
 CREATE TABLE categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL UNIQUE, -- Restricción: Nombre único
+    nombre VARCHAR(100) NOT NULL UNIQUE, -- Nombre único
     descripcion TEXT
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE categorias (
 CREATE TABLE clientes (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
-    correo VARCHAR(150) NOT NULL UNIQUE, -- Restricción: Unicidad de correos 
+    correo VARCHAR(150) NOT NULL UNIQUE, -- Correo único
     telefono VARCHAR(20),
     direccion VARCHAR(255)
 );
@@ -24,7 +24,7 @@ CREATE TABLE productos (
     nombre VARCHAR(150) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
-    stock INT NOT NULL CHECK (stock >= 0), -- Restricción: Stock no negativo
+    stock INT NOT NULL CHECK (stock >= 0), -- Stock no negativo
     id_categoria INT,
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
@@ -38,7 +38,7 @@ CREATE TABLE pedidos (
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
--- Detalles_Pedido
+-- Detalles_pedido
 CREATE TABLE detalles_pedido (
     id_detalle INT AUTO_INCREMENT PRIMARY KEY,
     id_pedido INT,
