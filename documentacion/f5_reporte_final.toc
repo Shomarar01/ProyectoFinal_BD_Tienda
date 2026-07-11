@@ -7,3 +7,7 @@
 \contentsline {section}{\numberline {4}Consultas y procedimientos almacenados}{7}{}%
 \contentsline {subsection}{\numberline {4.1}Consultas SQL}{7}{}%
 \contentsline {subsection}{\numberline {4.2}Procedimientos Almacenados (Store Procedures)}{8}{}%
+\contentsline {section}{\numberline {5}Resultados de pruebas y an\'alisis de rendimiento}{12}{}%
+\contentsline {subsection}{\numberline {5.1}Resultados de consultas con datos de prueba}{12}{}%
+\contentsline {subsection}{\numberline {5.2}An\'alisis de rendimiento con indices (EXPLAIN)}{13}{}%
+\contentsline {subsection}{\numberline {5.3}Pruebas de restricciones y reglas de negocio}{14}{}%

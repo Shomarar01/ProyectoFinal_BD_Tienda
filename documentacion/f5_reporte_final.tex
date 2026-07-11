@@ -450,4 +450,85 @@ END //
 DELIMITER ;
 \end{lstlisting}
 
+\section{Resultados de pruebas y an\'alisis de rendimiento}
+La base de datos fue sometida a una validaci\'on rigurosa ejecutando consultas y simulando escenarios de error mediante el comando \texttt{CALL}, para comprobar que el sistema realmente soporta el uso diario de una tienda online.
+
+\subsection{Resultados de consultas con datos de prueba}
+Al realizar las consultas que construimos en la Fase 3 con los datos de prueba ingresados, el sistema nos devolvi\'o exactamente la informaci\'on que esper\'abamos. Aqu\'i detallamos los resultados:
+
+\begin{enumerate}
+    \item \textbf{Productos disponibles por categor\'ia:}
+    Al usar la cl\'ausula \texttt{JOIN}, el sistema cruz\'o las tablas correctamente para mostrarnos el nombre de la categor\'ia en lugar de solo su ID num\'erico, ordenando los precios de menor a mayor.
+\begin{verbatim}
++---------------+------------+----------+-------+
+| producto      | categoria  | precio   | stock |
++---------------+------------+----------+-------+
+| Cable USB-C   | Accesorios |   200.00 |   100 |
+| Poco X3       | Teléfonos  |  5000.00 |    40 |
+| iPhone 13     | Teléfonos  | 15000.00 |    20 |
+| MacBook Air   | Laptops    | 20000.00 |    10 |
++---------------+------------+----------+-------+
+\end{verbatim}
+
+    \item \textbf{Clientes con pedidos pendientes:}
+    El sistema agrup\'o correctamente los datos de los nuevos clientes usando \texttt{GROUP BY} y cont\'o cu\'antas compras en proceso tiene cada uno de forma individual.
+\begin{verbatim}
++-----------------+--------------------+--------------------------+
+| cliente         | correo             | total_pedidos_pendientes |
++-----------------+--------------------+--------------------------+
+| Pablo Hernandez | pablo@email.com    |                        1 |
+| Jhovanny Pérez  | jhovanny@email.com |                        1 |
++-----------------+--------------------+--------------------------+
+\end{verbatim}
+
+    \item \textbf{Mejores calificaciones promedio:}
+    La funci\'on \texttt{AVG} calcul\'o los promedios reales y el \texttt{LIMIT 5} funcion\'o a la perfecci\'on para traernos solo el top de productos.
+\begin{verbatim}
++-------------+-----------------------+
+| producto    | promedio_calificacion |
++-------------+-----------------------+
+| iPhone 13   |              5.000000 |
+| Dell XPS 13 |              5.000000 |
++-------------+-----------------------+
+\end{verbatim}
+\end{enumerate}
+
+\subsection{An\'alisis de rendimiento con indices (EXPLAIN)}
+Como vimos en las diapositivas de clase, los \'indices funcionan exactamente como el \'indice de un libro, permitiendo que MySQL vaya directo a la fila que buscamos en lugar de leer toda la tabla desde el principio. Para comprobar que funcionan, usamos el comando \texttt{EXPLAIN} antes de hacer un SELECT, lo cual nos sirve para auditar el comportamiento del sistema.
+
+\begin{verbatim}
+mysql> EXPLAIN SELECT * FROM productos WHERE nombre = 'iPhone 13';
++----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
+| id | select_type | table     | type | possible_keys       | key                 | key_len | ref   | rows | filtered |
++----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
+|  1 | SIMPLE      | productos | ref  | idx_producto_nombre | idx_producto_nombre | 452     | const |    1 |   100.00 |
++----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
+\end{verbatim}
+
+La explicaci\'on de esta tabla es la siguiente:
+\begin{itemize}
+    \item En la columna \texttt{key}, notamos que el sistema s\'i utiliz\'o nuestro \'indice llamado \texttt{idx\_producto\_nombre}.
+    \item En la columna \texttt{rows}, vemos el n\'umero 1. Esto significa que MySQL solo tuvo que escanear una \'unica fila para encontrar el iPhone 13, demostrando que la consulta es s\'uper r\'apida y no desperdicia recursos del servidor.
+\end{itemize}
+
+\subsection{Pruebas de restricciones y reglas de negocio}
+Realizamos llamadas a los procedimientos almacenados intentando ingresar datos falsos o inv\'alidos intencionalmente, para comprobar si nuestras alertas lograban detenerlos.
+
+\begin{itemize}
+    \item \textbf{Intento de rese\~na sin compra:} Intentamos que el cliente 2 (Jhovanny P\'erez) hiciera una rese\~na de un producto que no ha pagado.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de rese\~na inv\'alida}]
+CALL sp_registrar_resena(5, 'Excelente celular', 1, 2);
+\end{lstlisting}
+    \textbf{Resultado:} El sistema detect\'o que las tablas no cruzaban y bloque\'o la inserci\'on arrojando el mensaje: \textit{Error: Solo puedes hacer rese\~nas de productos que hayas comprado.}
+
+    \item \textbf{Intento de compra sin stock:} Tratamos de insertar un pedido pidiendo 1000 unidades de un art\'iculo que solo ten\'ia 20.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de stock insuficiente}]
+CALL sp_registrar_pedido(2, 1, 1000, 15000.00);
+\end{lstlisting}
+    \textbf{Resultado:} El procedimiento ejecut\'o nuestro condicional \texttt{IF} y respondi\'o: \textit{Error: No hay suficiente stock para este producto.}
+
+    \item \textbf{Restricci\'on de integridad (Check):} Al intentar insertar un \texttt{INSERT} directo con una calificaci\'on de 7 estrellas.
+    \textbf{Resultado:} MySQL detuvo la inserci\'on y marc\'o error de integridad debido a la restricci\'on \texttt{CHECK (calificacion BETWEEN 1 AND 5)} definida en la tabla, protegiendo as\'i el formato de los datos.
+\end{itemize}
+
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.1)  10 JUL 2026 18:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.1)  10 JUL 2026 19:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -212,7 +212,67 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [2] (C:\Users\shomi\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
-) [3 <./f1_diagrama_ER.png>] [4] [5] [6] [7] [8] [9] [10] [11] [12] (f5_reporte_final.aux
+) [3 <./f1_diagrama_ER.png>] [4] [5] [6] [7] [8] [9] [10] [11] [12]
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 482--482
+ []\OT1/cmtt/m/n/10 +-----------------+--------------------+--------------------------+[] 
+ []
+
+
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 482--482
+ []\OT1/cmtt/m/n/10 | cliente         | correo             | total_pedidos_pendientes |[] 
+ []
+
+
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 482--482
+ []\OT1/cmtt/m/n/10 +-----------------+--------------------+--------------------------+[] 
+ []
+
+
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 482--482
+ []\OT1/cmtt/m/n/10 | Pablo Hernandez | pablo@email.com    |                        1 |[] 
+ []
+
+
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 482--482
+ []\OT1/cmtt/m/n/10 | Jhovanny P^^Serez  | jhovanny@email.com |                        1 |[] 
+ []
+
+
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 482--482
+ []\OT1/cmtt/m/n/10 +-----------------+--------------------+--------------------------+[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 506--506
+[]\OT1/cmtt/m/n/10 mysql> EXPLAIN SELECT * FROM productos WHERE nombre = 'iPhone 13';[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 506--506
+[]\OT1/cmtt/m/n/10 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 506--506
+[]\OT1/cmtt/m/n/10 | id | select_type | table     | type | possible_keys       | key                 | key_len | ref   | rows | filtered |[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 506--506
+[]\OT1/cmtt/m/n/10 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 506--506
+[]\OT1/cmtt/m/n/10 |  1 | SIMPLE      | productos | ref  | idx_producto_nombre | idx_producto_nombre | 452     | const |    1 |   100.00 |[] 
+ []
+
+
+Overfull \hbox (279.74455pt too wide) in paragraph at lines 506--506
+[]\OT1/cmtt/m/n/10 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+[] 
+ []
+
+[13] [14] (f5_reporte_final.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -222,17 +282,17 @@ L3 programming layer <2026-04-28>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5318 strings out of 467683
- 82504 string characters out of 5414722
+ 5321 strings out of 467683
+ 82573 string characters out of 5414722
  1391646 words of memory out of 5000000
- 34365 multiletter control sequences out of 15000+600000
+ 34368 multiletter control sequences out of 15000+600000
  632658 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,864b,1964s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on f5_reporte_final.pdf (12 pages, 387864 bytes).
+Output written on f5_reporte_final.pdf (14 pages, 407216 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
+ 96 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

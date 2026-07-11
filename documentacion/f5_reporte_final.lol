@@ -4,3 +4,5 @@
 \contentsline {lstlisting}{\numberline {4}Consulta 2: Mostrar clientes con pedidos pendientes y total de compras.}{7}{}%
 \contentsline {lstlisting}{\numberline {5}Consulta 3: Reporte de los 5 productos con mejor calificación promedio en reseñas.}{7}{}%
 \contentsline {lstlisting}{\numberline {6}Store Procedures para automatizar reglas de negocio y mantener integridad de datos}{8}{}%
+\contentsline {lstlisting}{\numberline {7}Prueba de rese\~na inv\'alida}{14}{}%
+\contentsline {lstlisting}{\numberline {8}Prueba de stock insuficiente}{14}{}%
