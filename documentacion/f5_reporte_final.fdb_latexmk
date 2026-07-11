@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1783729293.3229 "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f5_reporte_final.tex" "f5_reporte_final.pdf" "f5_reporte_final" 1783729297.85377 0
+["pdflatex"] 1783729307.2705 "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f5_reporte_final.tex" "f5_reporte_final.pdf" "f5_reporte_final" 1783729310.62092 0
   "C:/Users/shomi/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1780327994 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/shomi/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1780327551 13353041 e71102a03c0a1450469db97213443b6b ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -23,7 +23,6 @@
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247596667 31809 8670ca339bf94e56da1fc21c80635e2a ""
-  "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1247596667 31099 342ef5a582aacbd3346f3cf4579679fa ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb" 1247596666 24287 6b803fa9eb1ddff9112e00519b09dd9e ""
@@ -54,12 +53,12 @@
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstmisc.sty" 1763898348 77105 002e983b638eadbf04e580642335f689 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstpatch.sty" 1763898348 353 9024412f43e92cd5b21fe9ded82d0610 ""
   "C:/Users/shomi/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f5_reporte_final.tex" 1783729291 27785 d84004d9dc7fb82c53cb4d6a9fe87e55 ""
+  "c:/Users/shomi/OneDrive/Documentos/UAMtsi/6Trimestre/BasesDeDatos/ProyectoFinal/documentacion/f5_reporte_final.tex" 1783729302 23429 537e62f00eb6a1ced0f15cedc8ba25aa ""
   "f1_diagrama_ER.png" 1783361285 260485 c47782f7a817497259dcc219596e2206 ""
-  "f5_reporte_final.aux" 1783729297 3035 8ab0c1c1c4390ab935feeed3038f314d "pdflatex"
-  "f5_reporte_final.lol" 1783729297 710 8acbc5080358d9710568caa7210050dd "pdflatex"
-  "f5_reporte_final.tex" 1783729291 27785 d84004d9dc7fb82c53cb4d6a9fe87e55 ""
-  "f5_reporte_final.toc" 1783729297 1139 5556f641574518c1bc5e6a13e7f52110 "pdflatex"
+  "f5_reporte_final.aux" 1783729310 2358 d7475ecc23b9a0f868192c39a5be1563 "pdflatex"
+  "f5_reporte_final.lol" 1783729310 710 8acbc5080358d9710568caa7210050dd "pdflatex"
+  "f5_reporte_final.tex" 1783729302 23429 537e62f00eb6a1ced0f15cedc8ba25aa ""
+  "f5_reporte_final.toc" 1783729310 667 e6049613216cf81e5b7d939754f5d81a "pdflatex"
   (generated)
   "f5_reporte_final.aux"
   "f5_reporte_final.log"
