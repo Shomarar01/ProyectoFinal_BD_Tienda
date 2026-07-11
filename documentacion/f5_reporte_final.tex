@@ -1,0 +1,90 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+
+% Preámbulo
+
+\title{Sistema de gestión de tienda online de electrónicos}
+\author{Shomara Berenice Rivera Huerta}
+\date{\today}
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,          
+    breaklines=true,                  
+    captionpos=t,                     
+    keepspaces=true,                  
+    numbers=left,                     
+    numbersep=5pt,                  
+    showspaces=false,                 
+    showstringspaces=false,
+    showtabs=false,                   
+    tabsize=2,
+    extendedchars=true,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{\textquestiondown}}1 {¡}{{\textexclamdown}}1
+}
+\lstset{style=mystyle}
+
+ \renewcommand{\lstlistingname}{Código}
+ \renewcommand{\lstlistlistingname}{Lista de códigos}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\lstlistoflistings
+
+\newpage
+
+\section{Introducción y objetivos}
+En el entorno comercial actual, las tiendas de productos electrónicos necesitan sistemas eficientes para gestionar su gran volumen de operaciones diarias, llevar el control manual del inventario, los clientes y las ventas suele generar errores como venta de productos sin stock o historiales de compras perdidos.
+
+El objetivo de este proyecto es diseñar e implementar una base de datos relacional y normalizada para una tienda online; el sistema busca centralizar la información mediante entidades bien definidas y el uso de llaves foráneas (\textit{Foreign Keys}) que mantengan la integridad referencial. Además, se busca automatizar las reglas de negocio, como el límite de pedidos pendientes y la validación de compras para las reseñas, utilizando procedimientos almacenados (\textit{Store Procedures}) e índices para asegurar un rendimiento óptimo.
+
+\section{Análisis y diseño}
+Para evitar la redundancia de datos y proteger la integridad de la base de datos, se estructuró el modelo dividiendo la información en entidades conectadas lógicamente.
+
+\subsection{Diagrama entidad-relación (ER)}
+Se determinó una estructura compuesta por 6 entidades principales:
+\begin{itemize}
+    \item \textbf{Categorias:} Organiza los productos.
+    \item \textbf{Productos:} Almacena el stock y los precios.
+    \item \textbf{Clientes:} Registra la información de contacto de los compradores.
+    \item \textbf{Pedidos:} Gestiona el estado y fecha de las compras.
+    \item \textbf{Detalles\_pedido:} Entidad puente que rompe la relación de muchos a muchos entre pedidos y productos, detallando cantidades.
+    \item \textbf{Resenas:} Guarda las opiniones de los usuarios sobre los productos.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{f1_diagrama_ER.png}
+    \caption{Diagrama entidad-relación del Sistema de tienda online}
+    \label{fig:diagrama}
+\end{figure}
+
+\subsection{Justificación de la normalización}
+Al analizar el diagrama Entidad-Relación diseñado, logré identificar que cumple con las formas normales basándonos en las reglas:
+
+\begin{enumerate}
+    \item \textbf{Primera Forma Normal (1NF):} El diagrama muestra que todos los atributos de cada entidad son atómicos, o sea que no tiene atributos multivaluados, por ejemplo, en lugar de guardar una lista de productos dentro de un mismo pedido, se creó la tabla \texttt{detalles\_pedido}. Cada entidad está diseñada para almacenar un único valor por campo, cumpliendo la 1NF.
+    \item \textbf{Segunda Forma Normal (2NF):} El modelo cumple con la 2NF porque además de cumplir el requisito de satisfacer la 1FN, no tiene dependencias parciales. En las entidades que funcionan como puente (como \texttt{detalles\_pedido}), los atributos dependen de la llave completa que identifica a ese detalle, y no solo de una parte de ella.
+    \item \textbf{Tercera Forma Normal (3NF):} Cumple con la 3NF ya que no existen dependencias transitivas; al observar las entidades, nos damos cuenta de que todos los atributos dependen solo de su llave principal, ningún atributo no clave depende de otro atributo no clave, en la tabla \texttt{productos} no ponemos el nombre de la categoría, solo su llave foránea.
+    \item \textbf{Cuarta Forma Normal (4NF):} Cumple con la 4NF porque no tenemos ninguna tabla que intente almacenar listas de datos independientes al mismo tiempo, quiere decir que no mezclamos cosas que no tienen nada que ver entre sí en un mismo lugar, separamos los pedidos de las reseñas para evitar que se generen combinaciones de datos sin sentido.
+    \item \textbf{Quinta Forma Normal (5NF):} Cumple con la 5NF porque las relaciones entre nuestras entidades son directas, paso a paso y de dos en dos (por ejemplo: el Cliente se relaciona con su Pedido, y el Pedido con el Producto a través del detalle), no tenemos relaciones donde 3 entidades distintas dependan estrictamente unas de otras al mismo tiempo.
+\end{enumerate}
+
+
+\end{document}
