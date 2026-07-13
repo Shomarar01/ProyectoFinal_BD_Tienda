@@ -139,8 +139,9 @@ Para comprobar que s\'i funcionan, utilizamos el comando \texttt{EXPLAIN} antes 
 
 Al ver la columna llamada \texttt{key}, podemos ver que MySQL s\'i utiliz\'o nuestro \'indice; y en la columna \texttt{rows}, dice que solo tuvo que leer 1 fila para encontrar el resultado, demostrando que la consulta est\'a optimizada.
 
-\section{Pruebas de procedimientos almacenados (escenarios de error)}
-Para asegurar que se cumplan las restricciones del profesor, ejecutamos los procedimientos almacenados usando el comando \texttt{CALL}, intentando meter datos falsos para ver si el sistema nos deten\'ia.
+
+\section{Pruebas de procedimientos almacenados (escenarios de validaci\'on y error)}
+Para asegurar que se cumplan las restricciones requeridas, ejecutamos los procedimientos almacenados usando el comando \texttt{CALL}, intentando meter tanto datos falsos para ver si el sistema nos deten\'ia, como datos correctos para verificar las actualizaciones.
 
 \subsection{Intento de rese\~na sin compra previa}
 Intentamos que el cliente 2 hiciera una rese\~na del producto 1, el cual nunca ha comprado.
@@ -157,11 +158,47 @@ CALL sp_registrar_pedido(1, 1, 1000, 15000.00);
 El procedimiento us\'o un IF para revisar el stock y, al ver que no alcanzaba, abort\'o la venta arrojando: \textit{Error: No hay suficiente stock para este producto.}
 
 \subsection{Intento de agregar producto duplicado}
-Intentamos registrar un iPhone 13 cuando ya existe otro igual en la misma categor\'ia.
+Intentamos registrar un "iPhone 13" cuando ya existe otro igual en la misma categor\'ia.
 \begin{lstlisting}[language=SQL, frame=single, caption={Error por producto duplicado}]
-CALL sp_agregar_producto('iPhone 13', '...', 15000, 10, 1);
+CALL sp_agregar_producto('iPhone 13', 'Tel\'efono de prueba', 15000.00, 10, 1);
 \end{lstlisting}
 El sistema cont\'o los nombres repetidos y lanz\'o la alerta: \textit{Error: Ya existe un producto con ese nombre en esta categor\'ia.}
+
+\subsection{Actualizaci\'on del inventario de productos}
+Probamos el procedimiento encargado de restarle art\'iculos al stock simulando que se vendieron 5 piezas del producto con ID 2.
+\begin{lstlisting}[language=SQL, frame=single, caption={Actualizaci\'on exitosa de stock}]
+CALL sp_actualizar_stock(2, 5);
+\end{lstlisting}
+Al ejecutar el \texttt{UPDATE}, el sistema redujo el stock de forma correcta sin necesidad de modificar los dem\'as campos del producto.
+
+\subsection{Cambio en el estado log\'istico de un pedido}
+Simulamos que el pedido n\'umero 1 cambi\'o de estatus en el proceso de entrega de la tienda.
+\begin{lstlisting}[language=SQL, frame=single, caption={Modificaci\'on del estado del pedido}]
+CALL sp_cambiar_estado_pedido(1, 'enviado');
+\end{lstlisting}
+MySQL modific\'o la columna estado de 'pendiente' a 'enviado' gui\'andose estrictamente por el ID proporcionado.
+
+\subsection{Eliminaci\'on de una rese\~na y c\'alculo del promedio}
+Mandamos a borrar la rese\~na n\'umero 1 para verificar que el sistema vuelva a calcular las estrellas del producto.
+\begin{lstlisting}[language=SQL, frame=single, caption={Eliminaci\'on de rese\~na y recalculo de promedio}]
+CALL sp_eliminar_resena(1);
+\end{lstlisting}
+El sistema aplic\'o el \texttt{DELETE} y de inmediato nos mostr\'o en pantalla la tabla con el nuevo promedio de calificaciones corregido.
+
+\subsection{Actualizaci\'on de los datos de contacto de un cliente}
+Modificamos el perfil del cliente n\'umero 1 simulando que cambi\'o su n\'umero telef\'onico y su casa.
+\begin{lstlisting}[language=SQL, frame=single, caption={Actualizaci\'on de perfil de cliente}]
+CALL sp_actualizar_cliente(1, 'Avenida Principal 123', '555-4321');
+\end{lstlisting}
+El sistema reemplaz\'o la direcci\'on y el tel\'efono viejos, dejando intactos el nombre y el correo electr\'onico del usuario.
+
+\subsection{Generaci\'on del reporte automatizado de stock bajo}
+Invocamos la consulta de control para extraer la lista de productos que tienen menos de 5 piezas en el almac\'en.
+\begin{lstlisting}[language=SQL, frame=single, caption={Llamada al reporte de stock bajo}]
+CALL sp_reporte_stock_bajo();
+\end{lstlisting}
+Al no requerir variables de entrada, se llama con los par\'entesis vac\'ios y MySQL Workbench nos arroja la lista ordenada de los art\'iculos que urge resurtir.
+
 
 \section{Propuestas de mejoras adicionales}
 Al ir haciendo este proyecto me di cuenta de un par de cosas que podr\'iamos implementar a futuro bas\'andonos en los temas que vimos en clase:

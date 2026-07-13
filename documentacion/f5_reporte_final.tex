@@ -7,10 +7,11 @@
 % Preámbulo
 
 \title{Sistema de gestión de tienda online de electrónicos}
-\author{Shomara Berenice Rivera Huerta}
+\author{Shomara Berenice Rivera Huerta}\\ \href{https://github.com/Shomarar01/ProyectoFinal_BD_Tienda}{Enlace al repositorio en GitHub}
 \date{\today}
 
 \usepackage{xcolor}
+\usepackage{hyperref}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -451,6 +452,18 @@ END //
 DELIMITER ;
 \end{lstlisting}
 
+
+\subsection{Enlace al video demostrativo del proyecto}
+Para comprobar de forma visual y pr\'actica el correcto funcionamiento de todo el sistema relacional, los scripts y las b\'usquedas en vivo dentro de MySQL Workbench, se grab\'o una demostraci\'on en video.
+El archivo multimedia se encuentra en Google Drive y puede ser consultado a trav\'es del siguiente enlace directo:
+
+\begin{center}
+    \url{LINK_DE_VIDEO_DE_DRIVE}
+\end{center}
+
+
+
+
 \section{Resultados de pruebas y an\'alisis de rendimiento}
 La base de datos fue sometida a una validaci\'on ejecutando consultas y simulando escenarios de error mediante el comando \texttt{CALL}, para comprobar que el sistema realmente soporta el uso diario de una tienda online.
 
@@ -544,24 +557,61 @@ La explicaci\'on de esta tabla es la siguiente:
     \item En la columna \texttt{rows}, vemos el n\'umero 1. Esto significa que MySQL solo tuvo que escanear una \'unica fila para encontrar el iPhone 13, demostrando que la consulta es s\'uper r\'apida y no desperdicia recursos del servidor.
 \end{itemize}
 
+
 \subsection{Pruebas de restricciones y reglas de negocio}
 Realizamos llamadas a los procedimientos almacenados intentando ingresar datos falsos o inv\'alidos intencionalmente, para comprobar si nuestras alertas lograban detenerlos.
-
 \begin{itemize}
-    \item \textbf{Intento de rese\~na sin compra:} Intentamos que el cliente 2 (Jhovanny P\'erez) hiciera una rese\~na de un producto que no ha pagado.
+    \item \textbf{Intento de rese\~na sin compra (sp\_registrar\_resena):} Intentamos que el cliente 2 (Jhovanny P\'erez) hiciera una rese\~na de un producto que no ha pagado.
 \begin{lstlisting}[language=SQL, frame=single, caption={Prueba de rese\~na inv\'alida}]
 CALL sp_registrar_resena(5, 'Excelente celular', 1, 2);
 \end{lstlisting}
-    \textbf{Resultado:} El sistema detect\'o que las tablas no cruzaban y bloque\'o la inserci\'on arrojando el mensaje: \textit{Error: Solo puedes hacer rese\~nas de productos que hayas comprado.}
+    \textbf{Resultado:} El sistema detect\'o que las tablas no cruzaban a trav\'es del \texttt{JOIN} y bloque\'o la inserci\'on arrojando el mensaje: \textit{Error: Solo puedes hacer rese\~nas de productos que hayas comprado.}
 
-    \item \textbf{Intento de compra sin stock:} Tratamos de insertar un pedido pidiendo 1000 unidades de un art\'iculo que solo ten\'ia 20.
+    \item \textbf{Intento de compra sin stock (sp\_registrar\_pedido):} Tratamos de insertar un pedido pidiendo 1000 unidades de un art\'iculo que solo ten\'ia 20.
 \begin{lstlisting}[language=SQL, frame=single, caption={Prueba de stock insuficiente}]
-CALL sp_registrar_pedido(2, 1, 1000, 15000.00);
+CALL sp_registrar_pedido(1, 1, 1000, 15000.00);
 \end{lstlisting}
-    \textbf{Resultado:} El procedimiento ejecut\'o nuestro condicional \texttt{IF} y respondi\'o: \textit{Error: No hay suficiente stock para este producto.}
+    \textbf{Resultado:} El procedimiento ejecut\'o nuestro condicional \texttt{IF} deteniendo la venta y respondi\'o: \textit{Error: No hay suficiente stock para este producto.}
 
-    \item \textbf{Restricci\'on de integridad (Check):} Al intentar insertar un \texttt{INSERT} directo con una calificaci\'on de 7 estrellas.
-    \textbf{Resultado:} MySQL detuvo la inserci\'on y marc\'o error de integridad debido a la restricci\'on \texttt{CHECK (calificacion BETWEEN 1 AND 5)} definida en la tabla, protegiendo as\'i el formato de los datos.
+    \item \textbf{Intento de agregar producto duplicado (sp\_agregar\_producto):} Quisimos registrar un art\'iculo con el mismo nombre y categor\'ia que uno ya existente.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de control de duplicados}]
+CALL sp_agregar_producto('iPhone 13', '...', 15000, 10, 1);
+\end{lstlisting}
+    \textbf{Resultado:} El conteo interno dio mayor a cero, por lo que se activ\'o el \texttt{SIGNAL SQLSTATE} mostrando el error: \textit{Error: Ya existe un producto con ese nombre en esta categor\'ia.}
+
+    \item \textbf{Actualizaci\'on autom\'atica de inventario (sp\_actualizar\_stock):} Probamos la funci\'on restándole 5 piezas al stock del producto 2 tras una compra simulada.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de resta de inventario}]
+CALL sp_actualizar_stock(2, 5);
+\end{lstlisting}
+    \textbf{Resultado:} El sistema aplic\'o la operaci\'on matem\'atica de resta de forma correcta en la fila correspondiente de la tabla productos.
+
+    \item \textbf{Cambio en el estatus log\'istico (sp\_cambiar\_estado\_pedido):} Invocamos el procedimiento para pasar la orden de compra n\'umero 1 al estatus de enviada.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de actualizaci\'on de estatus}]
+CALL sp_cambiar_estado_pedido(1, 'enviado');
+\end'
+\end{lstlisting}
+    \textbf{Resultado:} El \texttt{UPDATE} se realiz\'o con \'exito y la orden qued\'o marcada para su distribuci\'on en el sistema.
+
+    \item \textbf{Borrado de rese\~na y rec\'alculo (sp\_eliminar\_resena):} Eliminamos la opini\'on con ID 1 para auditar que el promedio de estrellas cambiara al instante.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de eliminaci\'on de opini\'on}]
+CALL sp_eliminar_resena(1);
+\end{lstlisting}
+    \textbf{Resultado:} MySQL borr\'o el registro y ejecut\'o la funci\'on \texttt{AVG} en pantalla, entreg\'andole al administrador el promedio real actualizado.
+
+    \item \textbf{Modificaci\'on de perfil de cliente (sp\_actualizar\_cliente):} Cambiamos la direcci\'on del cliente 1 a 'Avenida Principal 123' por una mudanza.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de modificaci\'on de perfil}]
+CALL sp_actualizar_cliente(1, 'Avenida Principal 123', '555-4321');
+\end{lstlisting}
+    \textbf{Resultado:} La informaci\'on se actualiz\'o en la tabla clientes respetando el ID de la persona sin alterar sus dem\'as datos.
+
+    \item \textbf{Extracci\'on de reporte cr\'itico (sp\_reporte\_stock\_bajo):} Solicitamos la lista de art\'iculos con inventario menor a 5 unidades.
+\begin{lstlisting}[language=SQL, frame=single, caption={Prueba de alerta de inventario bajo}]
+CALL sp_reporte_stock_bajo();
+\end{lstlisting}
+    \textbf{Resultado:} El sistema filtr\'o las filas y nos despleg\'o ordenados de menor a mayor los productos que est\'an a punto de agotarse.
+
+    \item \textbf{Restricci\'on de integridad Check:} Intentamos hacer un \texttt{INSERT} forzado metiendo una rese\~na con calificaci\~on directa de 7 estrellas.
+    \textbf{Resultado:} MySQL detuvo la inserci\'on y marc\'o error de integridad debido a la restricci\'on \texttt{CHECK (calificacion BETWEEN 1 AND 5)} definida en la tabla, protegiendo as\'i el formato de los datos de forma automática.
 \end{itemize}
 
 
