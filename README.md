@@ -10,22 +10,22 @@ El funcionamiento y la explicación detallada de todo este sistema se puede visu
 #Fases del Proyecto
 
 El proyecto está dividido en 5 entregables principales:
- - ** Fase 1: Análisis y Diseño **(Diagrama ER, normalización 3NF, identificación de claves).
- - ** Fase 2: Implementación **(Scripts DDL y DML en MySQL con restricciones y optimización con índices).
- - ** Fase 3: Consultas y Procedimientos **(Implementación de lógica de negocio mediante procedimientos almacenados).
- - ** Fase 4: Validación y Optimización **(Pruebas de integridad).
- - **Fase 5: Documentación **(Reporte formal estructurado en LaTeX).
+ - ** Fase 1: Análisis y Diseño ** (Diagrama ER, normalización 3NF, identificación de claves).
+ - ** Fase 2: Implementación ** (Scripts DDL y DML en MySQL con restricciones y optimización con índices).
+ - ** Fase 3: Consultas y Procedimientos ** (Implementación de lógica de negocio mediante procedimientos almacenados).
+ - ** Fase 4: Validación y Optimización ** (Pruebas de integridad).
+ - **Fase 5: Documentación ** (Reporte formal estructurado en LaTeX).
 
 ## Tecnologías usadas
 
-Base de Datos: MySQL (Archivos .sql)
-Documentación: LaTeX (Compilado mediante VS Code y pdflatex)
-Modelado: MySQL Model para diagrama Entidad-Relación
+- Base de Datos: MySQL (Archivos .sql)
+- Documentación: LaTeX (Compilado mediante VS Code y pdflatex)
+- Modelado: MySQL Model para diagrama Entidad-Relación
 
 ## Estructura del Repositorio
 
-/documentación: Contiene los archivos fuente en LaTeX y los diagramas exportados.
-/sql: Contiene los scripts numerados por fases (f1_... , f2_..., f3_..., f4_...) listos para ser ejecutados en MySQL Workbench.
+- /documentación: Contiene los archivos fuente en LaTeX y los diagramas exportados.
+- /sql: Contiene los scripts numerados por fases (f1_... , f2_..., f3_..., f4_...) listos para ser ejecutados en MySQL Workbench.
 
 ##Guía de Ejecución
 
