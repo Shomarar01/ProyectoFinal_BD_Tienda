@@ -2,10 +2,13 @@
 
 Este repositorio contiene el desarrollo del proyecto final para la materia de Bases de Datos, el sistema gestiona las operaciones de una tienda de productos electrónicos, incluyendo el manejo de clientes, productos, categorías, pedidos y reseñas.
 
-## 📹 Video demostrativo
+## Video demostrativo y documentación en PDF 
 
 El funcionamiento y la explicación detallada de todo este sistema se puede visualizar en el siguiente enlace:
 👉 [Ver video explicativo en Google Drive](LINK_DE_DRIVE)
+
+La documentación en PDF con se encuentra en este enlace:
+👉 [Ver documentación en PDF](LINK_PDF)
 
 ## Fases del proyecto
 

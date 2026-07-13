@@ -4,7 +4,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{hyperref}
-% Preámbulo
+
 
 \title{Sistema de gestión de tienda online de electrónicos}
 \author{Shomara Berenice Rivera Huerta \and \href{https://github.com/Shomarar01/ProyectoFinal_BD_Tienda}{Enlace al repositorio en GitHub}}
@@ -616,7 +616,7 @@ CALL sp_reporte_stock_bajo();
 
 
 \section{Conclusiones y lecciones aprendidas}
-Hacer la implementaci\'on de esta base de datos paso a paso me permiti\'o entender mucho mejor c\'omo se conecta toda la informaci\'on del backend de una tienda real. Al analizar las tablas y programar los procedimientos, me di cuenta de que las llaves for\'aneas y la normalizaci\'on son la pieza principal para que todo funcione en orden, ya que evitan que tengamos clientes fantasma o que modifiquemos el dato de una categor\'ia y se desajuste en otros lados.
+Hacer la implementaci\'on de esta base de datos paso a paso me permiti\'o entender mucho mejor c\'omo se conecta toda la informaci\'on de una tienda real, en el proceso de analizar las tablas y programar los procedimientos, me di cuenta de que las llaves for\'aneas y la normalizaci\'on son la pieza principal para que todo funcione en orden, ya que evitan que tengamos clientes fantasma o que modifiquemos el dato de una categor\'ia y se desajuste en otros lados.
 
 Otro punto importante que comprend\'i mejor con este proyecto fue que utilizar Procedimientos Almacenados en lugar de solo insertar datos a la fuerza, nos da una capa de seguridad gigante, pues gracias al uso de las condicionales y el comando \texttt{SIGNAL}, es pr\'acticamente imposible meter "datos basura" o romper las reglas del negocio, incluso si un empleado se equivoca al capturar.
 
@@ -627,8 +627,6 @@ Al ser mi primer proyecto completo de bases de datos, me llevo las siguientes le
     \item \textbf{Una base de datos no solo guarda informaci\'on, la protege:} Descubr\'i que herramientas sencillas como el \texttt{CHECK} o hacer \texttt{JOIN} en los \texttt{STORED PROCEDURES} son como candados de seguridad, la base de datos es responsable de rechazar los datos il\'ogicos.
     \item \textbf{Aprender a leer los errores:} Al principio los errores en rojo de MySQL me desconcertaban porque no los entendía de todo, pero aprend\'i que leerlos detalladamente te dice exactamente d\'onde te equivocaste, especialmente cuando se trata de llaves for\'aneas que no coinciden.
 \end{itemize}
-
-En el futuro, como mejora adicional, propondr\'ia la creaci\'on de \textbf{VIEWS} para guardar las consultas que utilizan muchos \texttt{JOIN} (como los reportes de ventas), de esta forma ser\'ia mucho m\'as sencillo y r\'apido para cualquier usuario leer la informaci\'on sin tener que comprender c\'odigo SQL complejo.
 
 En conclusi\'on, el sistema desarrollado funciona correctamente, cumple con los objetivos planteados y proporciona una base s\'olida para la gesti\'on de una tienda online de electr\'onicos.
 \end{document}
