@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.1)  13 JUL 2026 00:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.1)  13 JUL 2026 01:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -333,7 +333,7 @@ Overfull \hbox (42.24687pt too wide) in paragraph at lines 525--525
  []\OT1/cmtt/m/n/10 | cliente         | correo              | total_pedidos_pendientes  |[] 
  []
 
-
+[14]
 Overfull \hbox (42.24687pt too wide) in paragraph at lines 525--525
  []\OT1/cmtt/m/n/10 +-----------------+---------------------+---------------------------+[] 
  []
@@ -343,7 +343,7 @@ Overfull \hbox (42.24687pt too wide) in paragraph at lines 525--525
  []\OT1/cmtt/m/n/10 | Angel Duenas    | angel@email.com     |                         2 |[] 
  []
 
-[14]
+
 Overfull \hbox (42.24687pt too wide) in paragraph at lines 525--525
  []\OT1/cmtt/m/n/10 | Paco Luna       | paco@email.com      |                         1 |[] 
  []
@@ -423,9 +423,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  75i,6n,79p,866b,2364s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/shomi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on f5_reporte_final.pdf (18 pages, 494444 bytes).
+Output written on f5_reporte_final.pdf (18 pages, 495202 bytes).
 PDF statistics:
- 668 PDF objects out of 1000 (max. 8388607)
+ 669 PDF objects out of 1000 (max. 8388607)
  396 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 
