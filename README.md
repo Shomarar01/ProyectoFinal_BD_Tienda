@@ -8,7 +8,7 @@ El funcionamiento y la explicación detallada de todo este sistema se puede visu
 👉 [Ver video explicativo en Google Drive](https://drive.google.com/file/d/140cbxe0c5ydEFmBdKuHXnoR1utrtD88k/view?usp=drive_link)
 
 La documentación en PDF con se encuentra en este enlace:
-👉 [Ver documentación en PDF](documentación/f5_reporte_final.pdf)
+👉 [Ver documentación en PDF](documentacion/f5_reporte_final.pdf)
 
 ## Fases del proyecto
 
