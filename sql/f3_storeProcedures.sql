@@ -4,7 +4,12 @@
 DELIMITER //
 
 -- 1. Registrar un nuevo pedido, verificando el límite de 5 pedidos pendientes y stock suficiente.
--- este procedimiento sirve para automatizar las compras porque primero declaramos variables locales para guardar de forma temporal los datos que vamos a consultar de las tablas, luego usamos SELECT COUNT y SELECT STOCK INTO para meter los resultados dentro de nuestras variables y poder hacer las validaciones del negocio con un IF, si el cliente ya debe 5 pedidos o si no hay stock, usamos signal SQLSTATE '45000' para detener todo por completo y lanzar un error personalizado, evitando que la base de datos se rompa o registre datos falsos;  si todo esta bien, se inserta el pedido y usamos LAST_INSERT_ID para agarrar el id que se acaba de generar en automatico y meterlo directo en detalles_pedido
+-- este procedimiento sirve para automatizar las compras porque primero declaramos variables locales para guardar 
+-- de forma temporal los datos que vamos a consultar de las tablas, luego usamos SELECT COUNT y SELECT STOCK INTO para 
+-- meter los resultados dentro de nuestras variables y poder hacer las validaciones del negocio con un IF, si el cliente 
+-- ya debe 5 pedidos o si no hay stock, usamos signal SQLSTATE '45000' para detener todo por completo y lanzar un error personalizado, 
+-- evitando que la base de datos se rompa o registre datos falsos;  si todo esta bien, se inserta el pedido y usamos LAST_INSERT_ID para
+-- agarrar el id que se acaba de generar en automatico y meterlo directo en detalles_pedido
 CREATE PROCEDURE sp_registrar_pedido(
     IN p_id_cliente INT,
     IN p_id_producto INT,
@@ -40,7 +45,9 @@ END //
 
 
 -- 2. Registrar una reseña, verificando que el cliente haya comprado el producto.
--- este procedimiento protege la integridad de las opiniones de la tienda, hacemos un SELECT COUNT cruzando detalles_pedido y pedidos con un JOIN para verificar si existe al menos un registro donde este cliente haya pagado por este producto, si el conteo da cero significa que nunca lo compro, por lo que usamos SIGNAL SQLSTATE para arrojar un error y bloquear la insercion de la resena
+-- este procedimiento protege la integridad de las opiniones de la tienda, hacemos un SELECT COUNT cruzando detalles_pedido y 
+-- pedidos con un JOIN para verificar si existe al menos un registro donde este cliente haya pagado por este producto, si el conteo 
+-- da cero significa que nunca lo compro, por lo que usamos SIGNAL SQLSTATE para arrojar un error y bloquear la insercion de la resena
 CREATE PROCEDURE sp_registrar_resena(
     IN p_calificacion INT,
     IN p_comentario TEXT,
@@ -66,7 +73,8 @@ END //
 
 
 -- 3. Actualizar el stock de un producto después de un pedido
--- este procedimiento sirve para manteer actualizado el inventario, lo que hacemos es un UPDATE directo a la tabla de productos usando su llave primaria y le restamos al stock original la cantidad exacta de piezas que el cliente se va a llevar en su compra
+-- este procedimiento sirve para manteer actualizado el inventario, lo que hacemos es un UPDATE directo a la tabla de productos 
+-- usando su llave primaria y le restamos al stock original la cantidad exacta de piezas que el cliente se va a llevar en su compra
 CREATE PROCEDURE sp_actualizar_stock(
     IN p_id_producto INT,
     IN p_cantidad_comprada INT
@@ -79,7 +87,8 @@ END //
 
 
 -- 4. Cambiar el estado de un pedido (ej. de pendiente a enviado)
--- sirve para la logica de logistica de la tienda, usamos un update para modificar el texto del estado de la orden (pendiente, enviado, entregado) guiandonos  por el id_pedido para no alterar las compras de otros clientes
+-- sirve para la logica de logistica de la tienda, usamos un update para modificar el texto del estado de la orden
+--  (pendiente, enviado, entregado) guiandonos  por el id_pedido para no alterar las compras de otros clientes
 CREATE PROCEDURE sp_cambiar_estado_pedido(
     IN p_id_pedido INT,
     IN p_nuevo_estado VARCHAR(20)
@@ -92,7 +101,10 @@ END //
 
 
 -- 5. Eliminar reseña de un producto específico, actualizando el promedio de calificaciones
--- aqui primero buscamos cual es el id del producto al que pertenece la resena que queremos borrar y lo respaldamos en una variable local, ya que si la borramos primero perderiamos ese dato; despues de aplicar el delete, hacemos un select combinado con AVG para mostrarle de inmediato al administrador como se recalculo el promedio general de estrellas de ese producto de manera automatica
+-- aqui primero buscamos cual es el id del producto al que pertenece la resena que queremos borrar y lo respaldamos en una 
+-- variable local, ya que si la borramos primero perderiamos ese dato; despues de aplicar el delete, hacemos un select combinado 
+-- con AVG para mostrarle de inmediato al administrador como se recalculo el promedio general de estrellas de ese producto de manera 
+-- automatica
 CREATE PROCEDURE sp_eliminar_resena(
     IN p_id_resena INT
 )
@@ -115,7 +127,9 @@ END //
 
 
 -- 6. Agregar un nuevo producto, verificando que no exista un duplicado (mismo nombre y categoría).
--- para evitar errores de captura donde metan dos veces la misma laptop o celular, hacemos un select count buscando si ya hay un registro con exactamente el mismo nombre dentro de la misma categoria, si el sistema encuentra que ya existe, frena la operacion con un signal y le avisa al usuario
+-- para evitar errores de captura donde metan dos veces la misma laptop o celular, hacemos un select count buscando si ya hay un 
+-- registro con exactamente el mismo nombre dentro de la misma categoria, si el sistema encuentra que ya existe, frena la operacion
+--  con un signal y le avisa al usuario
 CREATE PROCEDURE sp_agregar_producto(
     IN p_nombre VARCHAR(150),
     IN p_descripcion TEXT,
@@ -139,7 +153,8 @@ END //
 
 
 -- 7. Actualizar la información de un cliente (ej. dirección o teléfono)
--- este procedimiento sirve para que el usuario pueda cambiar sus datos de contacto en su perfil, aplicamos un UPDATE directo sobre la tabla clientes y usamos el id_cliente en el WHERE para  que se modifiquen los datos de la persona correcta
+-- este procedimiento sirve para que el usuario pueda cambiar sus datos de contacto en su perfil, aplicamos un UPDATE directo sobre 
+-- la tabla clientes y usamos el id_cliente en el WHERE para  que se modifiquen los datos de la persona correcta
 CREATE PROCEDURE sp_actualizar_cliente(
     IN p_id_cliente INT,
     IN p_nueva_direccion VARCHAR(255),
@@ -153,7 +168,8 @@ END //
 
 
 -- 8. Generar un reporte de productos con stock bajo (menos de 5 unidades)
--- es una consulta de control para el administrador de la tienda, hace un SELECT filtrando con un WHERE para extraer unicamente los productos que tengan menos de 5 piezas en el inventario, ordenandolos de menor a mayor stock para saber que urge resurtir primero.
+-- es una consulta de control para el administrador de la tienda, hace un SELECT filtrando con un WHERE para extraer unicamente los 
+-- productos que tengan menos de 5 piezas en el inventario, ordenandolos de menor a mayor stock para saber que urge resurtir primero.
 CREATE PROCEDURE sp_reporte_stock_bajo()
 BEGIN
     SELECT nombre, stock, precio

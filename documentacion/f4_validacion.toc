@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Resultados de consultas con datos de prueba}{2}{}%
+\contentsline {section}{\numberline {2}Explicaci\'on de \'indices creados y su impacto}{4}{}%
+\contentsline {section}{\numberline {3}Pruebas de procedimientos almacenados (escenarios de validaci\'on y error)}{4}{}%
+\contentsline {subsection}{\numberline {3.1}Intento de rese\~na sin compra previa}{5}{}%
+\contentsline {subsection}{\numberline {3.2}Intento de compra sin stock suficiente}{5}{}%
+\contentsline {subsection}{\numberline {3.3}Intento de agregar producto duplicado}{5}{}%
+\contentsline {subsection}{\numberline {3.4}Actualizaci\'on del inventario de productos}{5}{}%
+\contentsline {subsection}{\numberline {3.5}Cambio en el estado log\'istico de un pedido}{6}{}%
+\contentsline {subsection}{\numberline {3.6}Eliminaci\'on de una rese\~na y c\'alculo del promedio}{6}{}%
+\contentsline {subsection}{\numberline {3.7}Actualizaci\'on de los datos de contacto de un cliente}{6}{}%
+\contentsline {subsection}{\numberline {3.8}Generaci\'on del reporte automatizado de stock bajo}{6}{}%
+\contentsline {section}{\numberline {4}Propuestas de mejoras adicionales}{7}{}%

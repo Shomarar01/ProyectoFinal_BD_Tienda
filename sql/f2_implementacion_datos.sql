@@ -21,7 +21,7 @@ INSERT INTO clientes (nombre, correo, telefono, direccion) VALUES
 ('Nolan Rivera', 'nolan@email.com', '5551244', 'Calle 11'),
 ('Omar Navarrete', 'omar@email.com', '5551245', 'Calle 12'),
 ('Lupita Gonzalez', 'lupita@email.com', '5551246', 'Calle 13'),
-('José Ruz', 'jose@email.com', '5551247', 'Calle 14'),
+('José Ruiz', 'jose@email.com', '5551247', 'Calle 14'),
 ('Rogelio Navarrete', 'rogelio@email.com', '5551248', 'Calle 15');
 
 -- Productos (30)(10 teléfonos, 10 laptops, 10 accesorios)

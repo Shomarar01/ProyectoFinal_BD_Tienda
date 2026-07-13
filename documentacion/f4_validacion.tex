@@ -4,7 +4,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 
-% Preambulo
+
 
 \title{Entregable fase 4: Informe de validaci\'on y optimizaci\'on de tienda online}
 \author{Shomara Rivera}
@@ -65,14 +65,41 @@ ORDER BY p.precio ASC;
     \end{lstlisting}
 
     \begin{verbatim}
-+---------------+------------+----------+-------+
-| producto      | categoria  | precio   | stock |
-+---------------+------------+----------+-------+
-| Cable USB-C   | Accesorios |   200.00 |   100 |
-| Poco X3       | Teléfonos  |  5000.00 |    40 |
-| iPhone 13     | Teléfonos  | 15000.00 |    20 |
-| MacBook Air   | Laptops    | 20000.00 |    10 |
-+---------------+------------+----------+-------+
+
++--------------------+------------+----------+-------+
+| producto           | categoria  | precio   | stock |
++--------------------+------------+----------+-------+
+| Mica de Cristal    | Accesorios |   150.00 |   120 |
+| Cable USB-C        | Accesorios |   200.00 |   100 |
+| Funda iPhone 13    | Accesorios |   300.00 |    60 |
+| Cargador Rápido    | Accesorios |   400.00 |    80 |
+| Mouse Inalámbrico  | Accesorios |   500.00 |    45 |
+| PowerBank 10000mAh | Accesorios |   800.00 |    30 |
+| Teclado Mecánico   | Accesorios |  1200.00 |    20 |
+| Galaxy Buds        | Accesorios |  3000.00 |    40 |
+| AirPods Pro        | Accesorios |  5000.00 |    50 |
+| Poco X3            | Teléfonos  |  5000.00 |    40 |
+| Sony WH-1000XM4    | Accesorios |  6000.00 |    15 |
+| Moto G100          | Teléfonos  |  7500.00 |    30 |
+| Xiaomi Mi 11       | Teléfonos  |  8000.00 |    25 |
+| Huawei P40         | Teléfonos  |  9000.00 |     8 |
+| Pixel 6            | Teléfonos  | 10000.00 |    10 |
+| OnePlus 9          | Teléfonos  | 11000.00 |     5 |
+| Galaxy S21         | Teléfonos  | 12000.00 |    15 |
+| Galaxy S22         | Teléfonos  | 14000.00 |    12 |
+| Acer Swift         | Laptops    | 15000.00 |    15 |
+| iPhone 13          | Teléfonos  | 15000.00 |    20 |
+| Asus ZenBook       | Laptops    | 17000.00 |     9 |
+| HP Envy            | Laptops    | 18000.00 |    12 |
+| iPhone 14          | Teléfonos  | 18000.00 |    10 |
+| MacBook Air        | Laptops    | 20000.00 |    10 |
+| ThinkPad X1        | Laptops    | 22000.00 |     7 |
+| Lenovo Legion      | Laptops    | 24000.00 |     6 |
+| Dell XPS 13        | Laptops    | 25000.00 |     5 |
+| MSI Stealth        | Laptops    | 28000.00 |     4 |
+| MacBook Pro        | Laptops    | 30000.00 |     3 |
+| Razer Blade        | Laptops    | 35000.00 |     2 |
++--------------------+------------+----------+-------+
     \end{verbatim}
 
     \item Mostrar clientes con pedidos pendientes y total de compras:
@@ -87,13 +114,16 @@ GROUP BY c.id_cliente;
     \end{lstlisting}
 
     \begin{verbatim}
-+-----------------+--------------------+---------------------------+
-| cliente         | correo             | total_pedidos_pendientes  |
-+-----------------+--------------------+---------------------------+
-| Pablo Hernandez | pablo@email.com    |                         1 |
-| Jhovanny Pérez  | jhovanny@email.com |                         1 |
-+-----------------+--------------------+---------------------------+
-    \end{verbatim}
++-----------------+---------------------+---------------------------+
+| cliente         | correo              | total_pedidos_pendientes  |
++-----------------+---------------------+---------------------------+
+| Angel Duenas    | angel@email.com     |                         2 |
+| Paco Luna       | paco@email.com      |                         1 |
+| Nolan Rivera    | nolan@email.com     |                         1 |
+| José Ruz        | jose@email.com      |                         1 |
+| Jhovanny Pérez  | jhovanny@email.com  |                         1 |
++-----------------+---------------------+---------------------------+
+\end{verbatim}
 
     \item Reporte de los 5 productos con mejor calificaci\'on promedio en rese\~nas:
     Esta consulta calcula el promedio de estrellas usando la funci\'on \texttt{AVG}; el filtro \texttt{LIMIT 5} recorta la tabla para mostrarnos solo el top de los mejores.
@@ -108,12 +138,15 @@ LIMIT 5;
     \end{lstlisting}
 
     \begin{verbatim}
-+-------------+-----------------------+
-| producto    | promedio_calificacion |
-+-------------+-----------------------+
-| iPhone 13   |              5.000000 |
-| Dell XPS 13 |              5.000000 |
-+-------------+-----------------------+
++-------------------+-----------------------+
+| producto          | promedio_calificacion |
++-------------------+-----------------------+
+| iPhone 13         |                5.0000 |
+| Mouse Inalámbrico |                5.0000 |
+| Galaxy S21        |                5.0000 |
+| Cargador Rápido   |                5.0000 |
+| Dell XPS 13       |                5.0000 |
++-------------------+-----------------------+
     \end{verbatim}
 \end{enumerate}
 

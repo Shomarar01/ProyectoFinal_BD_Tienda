@@ -1,0 +1,1 @@
+EXPLAIN SELECT * FROM productos WHERE nombre = 'iPhone 13';
