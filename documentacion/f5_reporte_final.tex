@@ -50,9 +50,9 @@
 \newpage
 
 \section{Introducción y objetivos}
-En el entorno comercial actual, las tiendas de productos electrónicos necesitan sistemas eficientes para gestionar su gran volumen de operaciones diarias, llevar el control manual del inventario, los clientes y las ventas suele generar errores como venta de productos sin stock o historiales de compras perdidos.
+Actualmente las tiendas de productos electrónicos necesitan sistemas eficientes para gestionar su gran volumen de operaciones diarias, llevar el control manual del inventario, los clientes y las ventas, ésto suele generar errores como venta de productos sin stock o historiales de compras perdidos, por lo que en el desarrollo del siguiente proyecto, buscaremos optimizar la administración de la información mediante una base de datos relacional y normalizada, que permita a los administradores y clientes interactuar con el sistema de manera rápida y segura.
 
-El objetivo de este proyecto es diseñar e implementar una base de datos relacional y normalizada para una tienda online; el sistema busca centralizar la información mediante entidades bien definidas y el uso de llaves foráneas (\textit{Foreign Keys}) que mantengan la integridad referencial. Además, se busca automatizar las reglas de negocio, como el límite de pedidos pendientes y la validación de compras para las reseñas, utilizando procedimientos almacenados (\textit{Store Procedures}) e índices para asegurar un rendimiento óptimo.
+El objetivo de este sistema es centralizar la información mediante entidades bien definidas y el uso de llaves foráneas (\textit{Foreign Keys}) que mantengan la integridad referencial, además, se busca automatizar las reglas de negocio, como el límite de pedidos pendientes y la validación de compras para las reseñas, utilizando procedimientos almacenados (\textit{Store Procedures}) e índices para asegurar un rendimiento óptimo.
 
 \section{Análisis y diseño}
 Para evitar la redundancia de datos y proteger la integridad de la base de datos, se estructuró el modelo dividiendo la información en entidades conectadas lógicamente.
@@ -80,7 +80,7 @@ Al analizar el diagrama Entidad-Relación diseñado, logré identificar que cump
 
 \begin{enumerate}
     \item \textbf{Primera Forma Normal (1NF):} El diagrama muestra que todos los atributos de cada entidad son atómicos, o sea que no tiene atributos multivaluados, por ejemplo, en lugar de guardar una lista de productos dentro de un mismo pedido, se creó la tabla \texttt{detalles\_pedido}. Cada entidad está diseñada para almacenar un único valor por campo, cumpliendo la 1NF.
-    \item \textbf{Segunda Forma Normal (2NF):} El modelo cumple con la 2NF porque además de cumplir el requisito de satisfacer la 1FN, no tiene dependencias parciales. En las entidades que funcionan como puente (como \texttt{detalles\_pedido}), los atributos dependen de la llave completa que identifica a ese detalle, y no solo de una parte de ella.
+    \item \textbf{Segunda Forma Normal (2NF):} El modelo cumple con la 2NF porque además de cumplir el requisito de satisfacer la 1FN, no tiene dependencias parcialesn; en las entidades que funcionan como puente (como \texttt{detalles\_pedido}), los atributos dependen de la llave completa que identifica a ese detalle, y no solo de una parte de ella.
     \item \textbf{Tercera Forma Normal (3NF):} Cumple con la 3NF ya que no existen dependencias transitivas; al observar las entidades, nos damos cuenta de que todos los atributos dependen solo de su llave principal, ningún atributo no clave depende de otro atributo no clave, en la tabla \texttt{productos} no ponemos el nombre de la categoría, solo su llave foránea.
     \item \textbf{Cuarta Forma Normal (4NF):} Cumple con la 4NF porque no tenemos ninguna tabla que intente almacenar listas de datos independientes al mismo tiempo, quiere decir que no mezclamos cosas que no tienen nada que ver entre sí en un mismo lugar, separamos los pedidos de las reseñas para evitar que se generen combinaciones de datos sin sentido.
     \item \textbf{Quinta Forma Normal (5NF):} Cumple con la 5NF porque las relaciones entre nuestras entidades son directas, paso a paso y de dos en dos (por ejemplo: el Cliente se relaciona con su Pedido, y el Pedido con el Producto a través del detalle), no tenemos relaciones donde 3 entidades distintas dependan estrictamente unas de otras al mismo tiempo.
@@ -163,6 +163,7 @@ CREATE INDEX idx_producto_categoria ON productos(id_categoria);
 -- Optimizar la búsqueda del historial de pedidos de un cliente específico
 CREATE INDEX idx_pedido_cliente ON pedidos(id_cliente);
 \end{lstlisting}
+
 
 \begin{lstlisting}[language=SQL, frame=single, caption={Script de inserción de datos de prueba}]
 USE tienda_electronica;
@@ -278,7 +279,7 @@ LIMIT 5;
 
 
 
-\subsection{Procedimientos Almacenados (Store Procedures)}
+\subsection{Procedimientos almacenados (Store Procedures)}
 Los procedimientos nos permiten validar condiciones usando \texttt{IF} y frenar transacciones inválidas con \texttt{SIGNAL}.
 
 \begin{lstlisting}[language=SQL, frame=single, caption={Store Procedures para automatizar reglas de negocio y mantener integridad de datos}]
@@ -451,57 +452,89 @@ DELIMITER ;
 \end{lstlisting}
 
 \section{Resultados de pruebas y an\'alisis de rendimiento}
-La base de datos fue sometida a una validaci\'on rigurosa ejecutando consultas y simulando escenarios de error mediante el comando \texttt{CALL}, para comprobar que el sistema realmente soporta el uso diario de una tienda online.
+La base de datos fue sometida a una validaci\'on ejecutando consultas y simulando escenarios de error mediante el comando \texttt{CALL}, para comprobar que el sistema realmente soporta el uso diario de una tienda online.
 
 \subsection{Resultados de consultas con datos de prueba}
-Al realizar las consultas que construimos en la Fase 3 con los datos de prueba ingresados, el sistema nos devolvi\'o exactamente la informaci\'on que esper\'abamos. Aqu\'i detallamos los resultados:
+Al realizar las consultas que construimos en el Punto 4 Fase 3 de este proyecto con los datos de prueba ingresados, el sistema nos devolvi\'o exactamente la informaci\'on que esper\'abamos:
 
 \begin{enumerate}
     \item \textbf{Productos disponibles por categor\'ia:}
     Al usar la cl\'ausula \texttt{JOIN}, el sistema cruz\'o las tablas correctamente para mostrarnos el nombre de la categor\'ia en lugar de solo su ID num\'erico, ordenando los precios de menor a mayor.
 \begin{verbatim}
-+---------------+------------+----------+-------+
-| producto      | categoria  | precio   | stock |
-+---------------+------------+----------+-------+
-| Cable USB-C   | Accesorios |   200.00 |   100 |
-| Poco X3       | Teléfonos  |  5000.00 |    40 |
-| iPhone 13     | Teléfonos  | 15000.00 |    20 |
-| MacBook Air   | Laptops    | 20000.00 |    10 |
-+---------------+------------+----------+-------+
++--------------------+------------+----------+-------+
+| producto           | categoria  | precio   | stock |
++--------------------+------------+----------+-------+
+| Mica de Cristal    | Accesorios |   150.00 |   120 |
+| Cable USB-C        | Accesorios |   200.00 |   100 |
+| Funda iPhone 13    | Accesorios |   300.00 |    60 |
+| Cargador Rápido    | Accesorios |   400.00 |    80 |
+| Mouse Inalámbrico  | Accesorios |   500.00 |    45 |
+| PowerBank 10000mAh | Accesorios |   800.00 |    30 |
+| Teclado Mecánico   | Accesorios |  1200.00 |    20 |
+| Galaxy Buds        | Accesorios |  3000.00 |    40 |
+| AirPods Pro        | Accesorios |  5000.00 |    50 |
+| Poco X3            | Teléfonos  |  5000.00 |    40 |
+| Sony WH-1000XM4    | Accesorios |  6000.00 |    15 |
+| Moto G100          | Teléfonos  |  7500.00 |    30 |
+| Xiaomi Mi 11       | Teléfonos  |  8000.00 |    25 |
+| Huawei P40         | Teléfonos  |  9000.00 |     8 |
+| Pixel 6            | Teléfonos  | 10000.00 |    10 |
+| OnePlus 9          | Teléfonos  | 11000.00 |     5 |
+| Galaxy S21         | Teléfonos  | 12000.00 |    15 |
+| Galaxy S22         | Teléfonos  | 14000.00 |    12 |
+| Acer Swift         | Laptops    | 15000.00 |    15 |
+| iPhone 13          | Teléfonos  | 15000.00 |    20 |
+| Asus ZenBook       | Laptops    | 17000.00 |     9 |
+| HP Envy            | Laptops    | 18000.00 |    12 |
+| iPhone 14          | Teléfonos  | 18000.00 |    10 |
+| MacBook Air        | Laptops    | 20000.00 |    10 |
+| ThinkPad X1        | Laptops    | 22000.00 |     7 |
+| Lenovo Legion      | Laptops    | 24000.00 |     6 |
+| Dell XPS 13        | Laptops    | 25000.00 |     5 |
+| MSI Stealth        | Laptops    | 28000.00 |     4 |
+| MacBook Pro        | Laptops    | 30000.00 |     3 |
+| Razer Blade        | Laptops    | 35000.00 |     2 |
++--------------------+------------+----------+-------+
 \end{verbatim}
 
     \item \textbf{Clientes con pedidos pendientes:}
     El sistema agrup\'o correctamente los datos de los nuevos clientes usando \texttt{GROUP BY} y cont\'o cu\'antas compras en proceso tiene cada uno de forma individual.
 \begin{verbatim}
-+-----------------+--------------------+--------------------------+
-| cliente         | correo             | total_pedidos_pendientes |
-+-----------------+--------------------+--------------------------+
-| Pablo Hernandez | pablo@email.com    |                        1 |
-| Jhovanny Pérez  | jhovanny@email.com |                        1 |
-+-----------------+--------------------+--------------------------+
++-----------------+---------------------+---------------------------+
+| cliente         | correo              | total_pedidos_pendientes  |
++-----------------+---------------------+---------------------------+
+| Angel Duenas    | angel@email.com     |                         2 |
+| Paco Luna       | paco@email.com      |                         1 |
+| Nolan Rivera    | nolan@email.com     |                         1 |
+| José Ruz        | jose@email.com      |                         1 |
+| Jhovanny Pérez  | jhovanny@email.com  |                         1 |
++-----------------+---------------------+---------------------------+
 \end{verbatim}
 
     \item \textbf{Mejores calificaciones promedio:}
     La funci\'on \texttt{AVG} calcul\'o los promedios reales y el \texttt{LIMIT 5} funcion\'o a la perfecci\'on para traernos solo el top de productos.
 \begin{verbatim}
-+-------------+-----------------------+
-| producto    | promedio_calificacion |
-+-------------+-----------------------+
-| iPhone 13   |              5.000000 |
-| Dell XPS 13 |              5.000000 |
-+-------------+-----------------------+
++-------------------+-----------------------+
+| producto          | promedio_calificacion |
++-------------------+-----------------------+
+| iPhone 13         |                5.0000 |
+| Mouse Inalámbrico |                5.0000 |
+| Galaxy S21        |                5.0000 |
+| Cargador Rápido   |                5.0000 |
+| Dell XPS 13       |                5.0000 |
++-------------------+-----------------------+
 \end{verbatim}
 \end{enumerate}
 
 \subsection{An\'alisis de rendimiento con indices (EXPLAIN)}
-Como vimos en las diapositivas de clase, los \'indices funcionan exactamente como el \'indice de un libro, permitiendo que MySQL vaya directo a la fila que buscamos en lugar de leer toda la tabla desde el principio. Para comprobar que funcionan, usamos el comando \texttt{EXPLAIN} antes de hacer un SELECT, lo cual nos sirve para auditar el comportamiento del sistema.
+Como vimos en las diapositivas de clase, los \'indices funcionan exactamente como el \'indice de un libro, permitiendo que MySQL vaya directo a la fila que buscamos en lugar de leer toda la tabla desde el principio; para comprobar que funcionan, usamos el comando \texttt{EXPLAIN} antes de hacer un SELECT, lo cual nos sirve para ver el comportamiento del sistema a detalle.
 
 \begin{verbatim}
 mysql> EXPLAIN SELECT * FROM productos WHERE nombre = 'iPhone 13';
 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
 | id | select_type | table     | type | possible_keys       | key                 | key_len | ref   | rows | filtered |
 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
-|  1 | SIMPLE      | productos | ref  | idx_producto_nombre | idx_producto_nombre | 452     | const |    1 |   100.00 |
+|  1 | SIMPLE      | productos | ref  | idx_producto_nombre | idx_producto_nombre | 602     | const |    1 |   100.00 |
 +----+-------------+-----------+------+---------------------+---------------------+---------+-------+------+----------+
 \end{verbatim}
 
@@ -531,4 +564,21 @@ CALL sp_registrar_pedido(2, 1, 1000, 15000.00);
     \textbf{Resultado:} MySQL detuvo la inserci\'on y marc\'o error de integridad debido a la restricci\'on \texttt{CHECK (calificacion BETWEEN 1 AND 5)} definida en la tabla, protegiendo as\'i el formato de los datos.
 \end{itemize}
 
+
+\section{Conclusiones y lecciones aprendidas}
+Hacer la implementaci\'on de esta base de datos paso a paso me permiti\'o entender mucho mejor c\'omo se conecta toda la informaci\'on del backend de una tienda real. Al analizar las tablas y programar los procedimientos, me di cuenta de que las llaves for\'aneas y la normalizaci\'on son la pieza principal para que todo funcione en orden, ya que evitan que tengamos clientes fantasma o que modifiquemos el dato de una categor\'ia y se desajuste en otros lados.
+
+Otro punto importante que comprend\'i mejor con este proyecto fue que utilizar Procedimientos Almacenados en lugar de solo insertar datos a la fuerza, nos da una capa de seguridad gigante, pues gracias al uso de las condicionales y el comando \texttt{SIGNAL}, es pr\'acticamente imposible meter "datos basura" o romper las reglas del negocio, incluso si un empleado se equivoca al capturar.
+
+Al ser mi primer proyecto completo de bases de datos, me llevo las siguientes lecciones aprendidas como principiante:
+\begin{itemize}
+    \item \textbf{El dise\~no en papel ahorra horas de c\'odigo:} Aprend\'i que tomarse el tiempo de hacer bien el diagrama Entidad-Relaci\'on y normalizar las tablas antes de abrir MySQL evita tener que borrar y rehacer toda la base de datos a la mitad del proyecto.
+    \item \textbf{La automatizaci\'on de los IDs:} Entend\'i por qu\'e es mejor usar \texttt{INT AUTO\_INCREMENT} para las llaves primarias; dejar que el sistema asigne los n\'umeros por s\'i solo evita choques de informaci\'on y hace los scripts de inserci\'on mucho m\'as limpios, esto lo noté porque al inicio del proyecto queria que todo fuera ordenado y visual para mi poniendo los ids combinados con letras para identificarlos pero sobre la marcha me dí cuenta de que sería complicarme las cosas y me quedé con los INT.
+    \item \textbf{Una base de datos no solo guarda informaci\'on, la protege:} Descubr\'i que herramientas sencillas como el \texttt{CHECK} o hacer \texttt{JOIN} en los \texttt{STORED PROCEDURES} son como candados de seguridad, la base de datos es responsable de rechazar los datos il\'ogicos.
+    \item \textbf{Aprender a leer los errores:} Al principio los errores en rojo de MySQL me desconcertaban porque no los entendía de todo, pero aprend\'i que leerlos detalladamente te dice exactamente d\'onde te equivocaste, especialmente cuando se trata de llaves for\'aneas que no coinciden.
+\end{itemize}
+
+En el futuro, como mejora adicional, propondr\'ia la creaci\'on de \textbf{VIEWS} para guardar las consultas que utilizan muchos \texttt{JOIN} (como los reportes de ventas), de esta forma ser\'ia mucho m\'as sencillo y r\'apido para cualquier usuario leer la informaci\'on sin tener que comprender c\'odigo SQL complejo.
+
+En conclusi\'on, el sistema desarrollado funciona correctamente, cumple con los objetivos planteados y proporciona una base s\'olida para la gesti\'on de una tienda online de electr\'onicos.
 \end{document}

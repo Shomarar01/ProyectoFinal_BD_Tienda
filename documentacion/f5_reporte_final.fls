@@ -89,9 +89,9 @@ OUTPUT f5_reporte_final.toc
 INPUT .\f5_reporte_final.lol
 INPUT .\f5_reporte_final.lol
 INPUT f5_reporte_final.lol
-OUTPUT f5_reporte_final.lol
 OUTPUT f5_reporte_final.pdf
 INPUT C:\Users\shomi\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+OUTPUT f5_reporte_final.lol
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT .\f1_diagrama_ER.png
@@ -119,6 +119,8 @@ INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
+INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\shomi\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
